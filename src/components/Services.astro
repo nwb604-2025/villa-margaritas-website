@@ -1,0 +1,81 @@
+---
+const services = [
+  {
+    title: "Hospedaje",
+    description: "Departamentos confortables para tu descanso.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-white"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" /></svg>` 
+    // Using a generic envelope/mail icon as placeholder or finding a Bed one.
+    // Bed Icon:
+    // d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 7.5V10m0 4v.75m4-4.75V10m0 4v.75m-8-1.5C3.254 12.5 4.75 11 6.5 11c1.75 0 3.25 1.5 3.25 3.25S8.25 17.5 6.5 17.5 3.25 16 3.25 14.25z" ... this is getting complex to hand-code. 
+    // I will use simple icons.
+  },
+  {
+    title: "Transporte",
+    description: "Servicio a convenir para tu movilidad.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-white"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" /></svg>`
+  },
+  {
+    title: "Cocina",
+    description: "Totalmente equipada para preparar tus alimentos.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-white"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.046 8.25 8.25 0 0 1 9.3 17.25m4.312-12.036c.277.5.52 1.025.725 1.57m-9.032 -2.25c.502.277 1.028.52 1.573.725" /></svg>` // Using a flame/pot abstraction
+  },
+  {
+    title: "Refrigeradora",
+    description: "Para mantener tus alimentos siempre frescos.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-white"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" /></svg>` // Pin/Location or Snowflake better? I'll use snowflake.
+    // Snowflake: d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z" ... wait that's play button. 
+    // I'll stick to a Box/Cube for fridge or just generic. Let's use a simple cube.
+  }
+];
+
+// Redefining icons to be more accurate (Bed, Car, Fire, Snowflake)
+const bedIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-white"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5m6 4.125l2.25 2.25m0 0l2.25 2.25M12 13.875l2.25-2.25M12 13.875l-2.25 2.25M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" /></svg>`; // Box/Bed-ish component
+const carIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-white"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" /></svg>`;
+const kitchenIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-white"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.046 8.25 8.25 0 019.3 17.25m4.312-12.036c.277.5.52 1.025.725 1.57m-9.032-2.25c.502.277 1.028.52 1.573.725" /></svg>`;
+const fridgeIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-white"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.25a3 3 0 013-3h7.5a3 3 0 013 3v13.5a3 3 0 01-3 3h-7.5a3 3 0 01-3-3V5.25zm0 4.5h13.5" /></svg>`;
+---
+
+<section id="services" class="py-24 bg-white text-center">
+  <div class="container mx-auto px-4">
+    <span class="text-primary font-sans text-sm font-bold tracking-[0.2em] uppercase block mb-4">
+      Comodidades
+    </span>
+    <h2 class="text-dark font-serif italic text-4xl mb-16">
+      Servicios Exclusivos
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div class="flex flex-col items-center group cursor-default">
+        <div class="w-24 h-24 rounded-full bg-primary flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110 shadow-lg group-hover:shadow-xl">
+          <Fragment set:html={bedIcon} />
+        </div>
+        <h3 class="text-dark font-sans font-bold text-lg uppercase tracking-wider mb-3">Hospedaje</h3>
+        <p class="text-light font-sans text-sm leading-6 max-w-[200px]">Departamentos confortables y equipados para tu descanso.</p>
+      </div>
+
+      <div class="flex flex-col items-center group cursor-default">
+        <div class="w-24 h-24 rounded-full bg-primary flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110 shadow-lg group-hover:shadow-xl">
+          <Fragment set:html={carIcon} />
+        </div>
+        <h3 class="text-dark font-sans font-bold text-lg uppercase tracking-wider mb-3">Transporte</h3>
+        <p class="text-light font-sans text-sm leading-6 max-w-[200px]">Servicio a convenir con el cliente para tu movilidad.</p>
+      </div>
+
+      <div class="flex flex-col items-center group cursor-default">
+        <div class="w-24 h-24 rounded-full bg-primary flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110 shadow-lg group-hover:shadow-xl">
+          <Fragment set:html={kitchenIcon} />
+        </div>
+        <h3 class="text-dark font-sans font-bold text-lg uppercase tracking-wider mb-3">Cocina</h3>
+        <p class="text-light font-sans text-sm leading-6 max-w-[200px]">Espacios equipados para que te sientas como en casa.</p>
+      </div>
+
+      <div class="flex flex-col items-center group cursor-default">
+        <div class="w-24 h-24 rounded-full bg-primary flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110 shadow-lg group-hover:shadow-xl">
+          <Fragment set:html={fridgeIcon} />
+        </div>
+        <h3 class="text-dark font-sans font-bold text-lg uppercase tracking-wider mb-3">Refrigeradora</h3>
+        <p class="text-light font-sans text-sm leading-6 max-w-[200px]">Para guardar y mantener tus alimentos frescos.</p>
+      </div>
+    </div>
+  </div>
+</section>

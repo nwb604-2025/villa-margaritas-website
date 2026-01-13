@@ -1,0 +1,85 @@
+---
+const links = [
+  { name: 'Inicio', href: '#' },
+  { name: 'Servicios', href: '#services' },
+  { name: 'Ubicación', href: '#location' },
+  { name: 'Contacto', href: '#footer' },
+]
+---
+
+<nav
+  id="navbar"
+  class="fixed top-0 z-50 flex w-full items-center justify-between px-4 py-6 transition-all duration-300 md:px-12"
+>
+  <div
+    id="nav-logo"
+    class="font-serif text-2xl font-bold tracking-wider text-white italic transition-colors duration-300"
+  >
+    villa margaritas
+  </div>
+
+  <ul class="hidden gap-8 md:flex">
+    {
+      links.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class="nav-link hover:text-primary font-sans text-sm font-medium tracking-widest text-white uppercase transition-colors duration-300"
+          >
+            {link.name}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <button
+    class="bg-primary hover:text-primary hidden cursor-pointer px-8 py-3 font-sans text-xs font-bold tracking-widest text-white uppercase transition-colors duration-300 hover:bg-white md:block"
+  >
+    Reservar
+  </button>
+
+  <!-- Mobile Menu Button (Placeholder) -->
+  <button id="mobile-menu-btn" class="text-2xl text-white transition-colors duration-300 md:hidden">
+    ☰
+  </button>
+</nav>
+
+<script>
+  const navbar = document.getElementById('navbar')
+  const navLogo = document.getElementById('nav-logo')
+  const navLinks = document.querySelectorAll('.nav-link')
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn')
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      navbar?.classList.add('bg-white', 'shadow-md', 'py-4')
+      navbar?.classList.remove('py-6')
+
+      navLogo?.classList.remove('text-white')
+      navLogo?.classList.add('text-dark')
+
+      mobileMenuBtn?.classList.remove('text-white')
+      mobileMenuBtn?.classList.add('text-dark')
+
+      navLinks.forEach((link) => {
+        link.classList.remove('text-white')
+        link.classList.add('text-dark')
+      })
+    } else {
+      navbar?.classList.remove('bg-white', 'shadow-md', 'py-4')
+      navbar?.classList.add('py-6')
+
+      navLogo?.classList.add('text-white')
+      navLogo?.classList.remove('text-dark')
+
+      mobileMenuBtn?.classList.add('text-white')
+      mobileMenuBtn?.classList.remove('text-dark')
+
+      navLinks.forEach((link) => {
+        link.classList.add('text-white')
+        link.classList.remove('text-dark')
+      })
+    }
+  })
+</script>

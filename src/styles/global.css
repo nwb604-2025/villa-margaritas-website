@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Montserrat", sans-serif;
+  --font-serif: "Playfair Display", serif;
+
+  --color-primary: #ff681a;
+  --color-secondary: #2e7d32;
+  --color-dark: #333333;
+  --color-light: #999999;
+}
+
+@utility bg-dots-pattern {
+  background-color: white;
+  background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+  background-size: 24px 24px;
+}
