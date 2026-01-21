@@ -8,10 +8,10 @@ importers:
 
   .:
     dependencies:
-      '@fontsource/montserrat':
+      '@fontsource-variable/playfair-display':
         specifier: ^5.2.8
         version: 5.2.8
-      '@fontsource/playfair-display':
+      '@fontsource/montserrat':
         specifier: ^5.2.8
         version: 5.2.8
       '@tailwindcss/vite':
@@ -33,6 +33,12 @@ importers:
       prettier-plugin-tailwindcss:
         specifier: ^0.7.2
         version: 0.7.2(prettier-plugin-astro@0.14.1)(prettier@3.7.4)
+      tailwindcss-animated:
+        specifier: ^2.0.0
+        version: 2.0.0(tailwindcss@4.1.18)
+      tailwindcss-intersect:
+        specifier: ^2.2.0
+        version: 2.2.0(tailwindcss@4.1.18)
 
 packages:
 
@@ -233,11 +239,11 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@fontsource-variable/playfair-display@5.2.8':
+    resolution: {integrity: sha512-ZzVIXPOrL85yyOvZYoBzUszIJM+xKkHqni4IYn2CVLaGQQdJR8sBeC8yFNgjxSJ7ludTwta8qpULeOFuk5X75A==}
+
   '@fontsource/montserrat@5.2.8':
     resolution: {integrity: sha512-xTjLxSbSfCycDB0pwmNsfNvdfWPaDaRQ2LC6yt/ZI7SdvXG52zHnzNYC/09mzuAuWNJyShkteutfCoDgym56hQ==}
-
-  '@fontsource/playfair-display@5.2.8':
-    resolution: {integrity: sha512-fUEhib70SszNhQVsGbUMSsWJhr7Je0rdeuZdtGpDNu0GKF1xJM8QhpI/y0pckU25GcChXm9TLOmeZupkvvZo2g==}
 
   '@img/colour@1.0.0':
     resolution: {integrity: sha512-A5P/LfWGFSl6nsckYtjw9da+19jB8hkJ6ACTGcDfEJ0aE+l2n2El7dsVM7UVHZQ9s2lmYMWlrS21YLy2IR1LUw==}
@@ -1515,6 +1521,16 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
+  tailwindcss-animated@2.0.0:
+    resolution: {integrity: sha512-anNNGpxNgjydD8p1lcJjxxH+XbjW6KR8Xs29owTrbcf3tOJ6IRblpyFob43HBkfxFJJTAfFQqugoEG2b1EsR0A==}
+    peerDependencies:
+      tailwindcss: '>=3.1.0 || >=4.0.0'
+
+  tailwindcss-intersect@2.2.0:
+    resolution: {integrity: sha512-LnOQ/iU44jNQ8k3OExa7Ccv/y5NlzAN574jjDnX5gLCdlqoeUT5ADtTznF92oAdon3NZA69b+JLknahbwsqxDA==}
+    peerDependencies:
+      tailwindcss: '>=3.2.0 || >=4.0.0'
+
   tailwindcss@4.1.18:
     resolution: {integrity: sha512-4+Z+0yiYyEtUVCScyfHCxOYP06L5Ne+JiHhY2IjR2KWMIWhJOYZKLSGZaP5HkZ8+bY0cxfzwDE5uOmzFXyIwxw==}
 
@@ -1921,9 +1937,9 @@ snapshots:
   '@esbuild/win32-x64@0.25.12':
     optional: true
 
-  '@fontsource/montserrat@5.2.8': {}
+  '@fontsource-variable/playfair-display@5.2.8': {}
 
-  '@fontsource/playfair-display@5.2.8': {}
+  '@fontsource/montserrat@5.2.8': {}
 
   '@img/colour@1.0.0':
     optional: true
@@ -3433,6 +3449,14 @@ snapshots:
       csso: 5.0.5
       picocolors: 1.1.1
       sax: 1.4.4
+
+  tailwindcss-animated@2.0.0(tailwindcss@4.1.18):
+    dependencies:
+      tailwindcss: 4.1.18
+
+  tailwindcss-intersect@2.2.0(tailwindcss@4.1.18):
+    dependencies:
+      tailwindcss: 4.1.18
 
   tailwindcss@4.1.18: {}
 

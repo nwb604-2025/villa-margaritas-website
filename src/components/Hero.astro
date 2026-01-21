@@ -4,77 +4,46 @@ import { Image } from 'astro:assets'
 
 <section class="relative h-svh w-full overflow-hidden bg-black">
   <div class="absolute inset-0">
-    <Image
-      width={1692}
-      height={1113}
-      src="/images/hero-bg.webp"
-      alt="Fondo Bufete Legal"
-      loading="eager"
-      fetchpriority="high"
-      class="h-full w-full object-cover"
-      style="animation: zoomIn 20s infinite alternate ease-in-out;"
-    />
+    <picture>
+      <source media="(min-width: 1200px)" srcset="/images/hero-bg-xl.webp" />
+      <Image
+        width={1692}
+        height={1113}
+        src="/images/hero-bg.webp"
+        alt="Fondo Villa Margaritas"
+        loading="eager"
+        fetchpriority="high"
+        class="h-full w-full object-cover"
+        style="animation: zoomIn 20s infinite alternate ease-in-out;"
+      />
+    </picture>
     <div class="absolute inset-0 bg-black/50"></div>
   </div>
 
   <div class="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center">
     <span
-      class="animate-fade-in-up mb-4 font-sans text-sm font-bold tracking-[0.2em] text-white uppercase md:text-base"
+      class="animate-duration-1000 mb-4 font-sans text-sm font-bold tracking-[0.2em] text-white uppercase md:text-base"
     >
       Bienvenido al Paraíso
     </span>
 
     <h1
-      class="animate-fade-in-up mb-6 font-serif text-5xl leading-tight text-white italic delay-100 md:text-7xl lg:text-8xl"
+      class="animate-delay-100 animate-duration-1000 mb-6 font-serif text-5xl leading-tight text-white italic md:text-7xl lg:text-8xl intersect:animate-fade-up"
     >
-      Relax & Enjoy
+      Relájate y Disfruta
     </h1>
 
     <p
-      class="animate-fade-in-up mb-10 max-w-2xl font-sans text-base leading-relaxed text-white/90 delay-200 md:text-lg"
+      class="animate-delay-200 animate-duration-1000 mb-10 max-w-2xl font-sans text-base leading-relaxed text-white/90 md:text-lg"
     >
       Disfruta de la tranquilidad y belleza natural en nuestros exclusivos departamentos.
     </p>
 
     <a
       href="#services"
-      class="bg-primary hover:text-primary animate-fade-in-up inline-block cursor-pointer px-10 py-4 font-sans text-sm font-bold tracking-widest text-white uppercase transition-all delay-300 duration-300 hover:bg-white"
+      class="bg-primary hover:text-primary animate-delay-300 animate-duration-1000 inline-block cursor-pointer px-10 py-4 font-sans text-sm font-bold tracking-widest text-white uppercase transition-all duration-300 hover:bg-white"
     >
       Descubrir Más
     </a>
   </div>
 </section>
-
-<style>
-  @keyframes zoomIn {
-    0% {
-      transform: scale(1);
-    }
-    100% {
-      transform: scale(1.1);
-    }
-  }
-
-  .animate-fade-in-up {
-    animation: fade-in-up 1s ease-out forwards;
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  .delay-100 {
-    animation-delay: 0.1s;
-  }
-  .delay-200 {
-    animation-delay: 0.2s;
-  }
-  .delay-300 {
-    animation-delay: 0.3s;
-  }
-
-  @keyframes fade-in-up {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-</style>

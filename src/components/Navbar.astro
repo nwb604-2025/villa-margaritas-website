@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets"
+
 const links = [
   { name: 'Inicio', href: '#' },
   { name: 'Servicios', href: '#services' },
@@ -11,12 +13,18 @@ const links = [
   id="navbar"
   class="fixed top-0 z-50 flex w-full items-center justify-between px-4 py-6 transition-all duration-300 md:px-12"
 >
-  <div
-    id="nav-logo"
-    class="font-serif text-2xl font-bold tracking-wider text-white italic transition-colors duration-300"
-  >
-    villa margaritas
-  </div>
+  <a href="/" id="nav-logo" class="block transition-transform duration-300 hover:scale-105">
+    <Image
+      width={100}
+      height={100}
+      loading="eager"
+      fetchpriority="high"
+      id="logo-img"
+      src="/images/logo.webp"
+      alt="Villa Margaritas Logo"
+      class="h-24 w-auto object-contain transition-all duration-300"
+    />
+  </a>
 
   <ul class="hidden gap-8 md:flex">
     {
@@ -48,6 +56,7 @@ const links = [
 <script>
   const navbar = document.getElementById('navbar')
   const navLogo = document.getElementById('nav-logo')
+  const logoImg = document.getElementById('logo-img')
   const navLinks = document.querySelectorAll('.nav-link')
   const mobileMenuBtn = document.getElementById('mobile-menu-btn')
 
@@ -56,8 +65,9 @@ const links = [
       navbar?.classList.add('bg-white', 'shadow-md', 'py-4')
       navbar?.classList.remove('py-6')
 
-      navLogo?.classList.remove('text-white')
-      navLogo?.classList.add('text-dark')
+      // Shrink logo on scroll
+      logoImg?.classList.remove('h-24')
+      logoImg?.classList.add('h-12')
 
       mobileMenuBtn?.classList.remove('text-white')
       mobileMenuBtn?.classList.add('text-dark')
@@ -70,8 +80,9 @@ const links = [
       navbar?.classList.remove('bg-white', 'shadow-md', 'py-4')
       navbar?.classList.add('py-6')
 
-      navLogo?.classList.add('text-white')
-      navLogo?.classList.remove('text-dark')
+      // Restore logo size at top
+      logoImg?.classList.add('h-24')
+      logoImg?.classList.remove('h-12')
 
       mobileMenuBtn?.classList.add('text-white')
       mobileMenuBtn?.classList.remove('text-dark')
