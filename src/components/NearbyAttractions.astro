@@ -1,34 +1,40 @@
 ---
 import { Image } from 'astro:assets'
+import atraccion1 from '../assets/images/attractions/atracciones-1.jpg'
+import atraccion2 from '../assets/images/attractions/atracciones-2.jpg'
+import atraccion3 from '../assets/images/attractions/atracciones-3.jpg'
+import atraccion4 from '../assets/images/attractions/atracciones-4.jpg'
+import atraccion5 from '../assets/images/attractions/atracciones-5.jpg'
+import atraccion6 from '../assets/images/attractions/atracciones-6.jpg'
 
 const attractions = [
   {
-    src: '/images/attractions/atracciones-1.jpg',
+    src: atraccion1,
     title: 'Atracción Local 1',
     description: 'A pocos minutos de distancia',
   },
   {
-    src: '/images/attractions/atracciones-2.jpg',
+    src: atraccion2,
     title: 'Atracción Local 2',
     description: 'Belleza natural imperdible',
   },
   {
-    src: '/images/attractions/atracciones-3.jpg',
+    src: atraccion3,
     title: 'Atracción Local 3',
     description: 'Ideal para visitar en familia',
   },
   {
-    src: '/images/attractions/atracciones-4.jpg',
+    src: atraccion4,
     title: 'Atracción Local 4',
     description: 'Experiencia inolvidable',
   },
   {
-    src: '/images/attractions/atracciones-5.jpg',
+    src: atraccion5,
     title: 'Atracción Local 5',
     description: 'Paisajes únicos',
   },
   {
-    src: '/images/attractions/atracciones-6.jpg',
+    src: atraccion6,
     title: 'Atracción Local 6',
     description: 'Cultura y tradición',
   },
@@ -52,7 +58,7 @@ const attractions = [
     </div>
 
     <!-- Grid -->
-    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
       {
         attractions.map((item, index) => (
           <div class="intersect:animate-fade-up group relative overflow-hidden shadow-lg transition-all hover:shadow-xl">

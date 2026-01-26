@@ -1,15 +1,17 @@
 ---
-import { Image } from 'astro:assets'
+import { Image, getImage } from 'astro:assets'
+import heroBg from '../assets/images/hero-bg.webp'
+import heroBgXl from '../assets/images/hero-bg-xl.webp'
+
+const heroBgXlOptimized = await getImage({ src: heroBgXl })
 ---
 
 <section class="relative h-svh w-full overflow-hidden bg-black">
   <div class="absolute inset-0">
     <picture>
-      <source media="(min-width: 1200px)" srcset="/images/hero-bg-xl.webp" />
+      <source media="(min-width: 1200px)" srcset={heroBgXlOptimized.src} />
       <Image
-        width={1692}
-        height={1113}
-        src="/images/hero-bg.webp"
+        src={heroBg}
         alt="Fondo Villa Margaritas"
         loading="eager"
         fetchpriority="high"
