@@ -106,21 +106,17 @@ const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(mess
     mobileMenu?.classList.toggle('opacity-0')
     mobileMenu?.classList.toggle('pointer-events-none')
 
-    // Toggle icon between Hamburger (☰) and Close (✕)
     if (mobileMenu?.classList.contains('opacity-0')) {
       mobileMenuBtn.textContent = '☰'
-      mobileMenuBtn.classList.remove('text-dark') // Ensure it respects scroll state color usually, but here we might want to force logic.
-      // Actually let's let scroll logic handle color, but we might need white for visibility on black overlay.
-      // If overlay is black, button needs to be white when open.
+      mobileMenuBtn.classList.remove('text-dark') 
       mobileMenuBtn.classList.add('text-white')
     } else {
       mobileMenuBtn.textContent = '✕'
       mobileMenuBtn.classList.remove('text-dark')
-      mobileMenuBtn.classList.add('text-white') // Always white when open on black overlay
+      mobileMenuBtn.classList.add('text-white') 
     }
   })
 
-  // Close menu when clicking a link
   mobileNavLinks.forEach((link) => {
     link.addEventListener('click', () => {
       mobileMenu?.classList.add('opacity-0')
@@ -139,7 +135,6 @@ const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(mess
       logoImg?.classList.remove('h-24')
       logoImg?.classList.add('h-12')
 
-      // Only change button color if menu is closed
       if (!isMenuOpen) {
         mobileMenuBtn?.classList.remove('text-white')
         mobileMenuBtn?.classList.add('text-dark')
@@ -156,7 +151,6 @@ const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(mess
       logoImg?.classList.add('h-24')
       logoImg?.classList.remove('h-12')
 
-      // Reset to white at top, unless strictly handled elsewhere
       mobileMenuBtn?.classList.add('text-white')
       mobileMenuBtn?.classList.remove('text-dark')
 
