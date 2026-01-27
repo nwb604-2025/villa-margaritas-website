@@ -1,5 +1,7 @@
 import { useState, useRef, type FormEvent } from 'react'
 import { toast } from 'sonner'
+import { validateContactForm } from '../lib/utils'
+import type { ContactFormData } from '../../types'
 
 export default function ContactForm() {
   const [loading, setLoading] = useState(false)
@@ -12,7 +14,15 @@ export default function ContactForm() {
     setLoading(true)
 
     const formData = new FormData(formRef.current)
-    const object = Object.fromEntries(formData)
+    const object = Object.fromEntries(formData) as unknown as ContactFormData
+
+    const { error } = validateContactForm(object)
+
+    if (error) {
+      toast.error(error)
+      return setLoading(false)
+    }
+
     const json = JSON.stringify(object)
 
     try {
@@ -32,6 +42,18 @@ export default function ContactForm() {
           description: 'Nos pondremos en contacto contigo pronto.',
         })
         formRef.current.reset()
+
+        await fetch('/api/clients', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            nombre: object.nombre,
+            correo: object.correo,
+            telefono: object.telefono,
+          }),
+        })
       } else {
         toast.error('Ocurrió un error', {
           description: result.message || 'Por favor intenta nuevamente.',
@@ -71,7 +93,7 @@ export default function ContactForm() {
           <input
             type="text"
             id="name"
-            name="name"
+            name="nombre"
             placeholder="Tu nombre completo"
             className="text-dark focus:border-primary focus:ring-primary w-full border border-gray-200 bg-white px-4 py-3 font-sans text-base transition-colors focus:ring-1 focus:outline-none"
             required
@@ -87,9 +109,10 @@ export default function ContactForm() {
           <input
             type="tel"
             id="phone"
-            name="phone"
+            name="telefono"
             placeholder="Tu número de teléfono"
             className="text-dark focus:border-primary focus:ring-primary w-full border border-gray-200 bg-white px-4 py-3 font-sans text-base transition-colors focus:ring-1 focus:outline-none"
+            required
           />
         </div>
       </div>
@@ -104,9 +127,9 @@ export default function ContactForm() {
         <input
           type="email"
           id="email"
-          name="email"
+          name="correo"
           placeholder="tu@email.com"
-          className="text-dark focus:border-primary focus:ring-primary w-full border border-gray-200 bg-white px-4 py-3 font-sans text-base transition-colors focus:ring-1 focus:outline-none"
+          className="text-dark focus:border- primary focus:ring-primary transition-col ors w-full border border-gray-200 bg-white px-4 py-3 font-sans text-base focus:ring-1 focus:outline-none"
           required
         />
       </div>
@@ -120,7 +143,7 @@ export default function ContactForm() {
         </label>
         <textarea
           id="message"
-          name="message"
+          name="mensaje"
           rows={5}
           placeholder="¿En qué fechas te gustaría visitarnos?"
           className="text-dark focus:border-primary focus:ring-primary w-full resize-none border border-gray-200 bg-white px-4 py-3 font-sans text-base transition-colors focus:ring-1 focus:outline-none"

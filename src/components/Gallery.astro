@@ -37,7 +37,6 @@ const images = [
 ---
 
 <section id="gallery" class="flex h-screen w-full flex-col md:h-[70vh] md:flex-row lg:h-screen">
-  <!-- Large Image (Left Side) -->
   <div class="group relative h-full cursor-pointer overflow-hidden">
     <Image
       width={600}
@@ -53,7 +52,6 @@ const images = [
     </div>
   </div>
 
-  <!-- Grid Images (Right Side) -->
   <div class="grid h-full grid-cols-2 grid-rows-2">
     {
       images.slice(1).map((img) => (
