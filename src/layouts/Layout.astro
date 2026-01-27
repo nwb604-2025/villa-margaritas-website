@@ -4,6 +4,7 @@ import '@fontsource/montserrat'
 import Footer from '../components/Footer.astro'
 import Navbar from '../components/Navbar.astro'
 import FloatingWhatsApp from '../components/FloatingWhatsApp.astro'
+import { Toaster } from 'sonner'
 ---
 
 <!doctype html>
@@ -20,6 +21,7 @@ import FloatingWhatsApp from '../components/FloatingWhatsApp.astro'
     <slot />
     <Footer />
     <FloatingWhatsApp />
+    <Toaster client:load richColors closeBtn />
     <script defer src="https://unpkg.com/tailwindcss-intersect@2.x.x/dist/observer.min.js"></script>
   </body>
 </html>
