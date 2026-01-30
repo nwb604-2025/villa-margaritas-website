@@ -5,6 +5,7 @@ import logo from '../assets/images/logo.webp'
 const links = [
   { name: 'Inicio', href: '#' },
   { name: 'Servicios', href: '#services' },
+  { name: 'Tarifas', href: '#pricing' },
   { name: 'Ubicación', href: '#location' },
   { name: 'Contacto', href: '#footer' },
 ]
@@ -108,12 +109,12 @@ const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(mess
 
     if (mobileMenu?.classList.contains('opacity-0')) {
       mobileMenuBtn.textContent = '☰'
-      mobileMenuBtn.classList.remove('text-dark') 
+      mobileMenuBtn.classList.remove('text-dark')
       mobileMenuBtn.classList.add('text-white')
     } else {
       mobileMenuBtn.textContent = '✕'
       mobileMenuBtn.classList.remove('text-dark')
-      mobileMenuBtn.classList.add('text-white') 
+      mobileMenuBtn.classList.add('text-white')
     }
   })
 

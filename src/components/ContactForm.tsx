@@ -33,8 +33,6 @@ export default function ContactForm() {
         body: JSON.stringify(object),
       })
 
-      const result = await response.json()
-
       if (response.status === 200) {
         await fetch('/api/clients', {
           method: 'POST',
