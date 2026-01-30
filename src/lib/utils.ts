@@ -1,4 +1,5 @@
 import type { ContactFormData } from '../../types'
+import { ValidacionCedulaRucService } from './ci-validator'
 
 /**
  * Validates email format using regex
@@ -45,6 +46,13 @@ export function validateContactForm(data: ContactFormData): { isValid: boolean; 
     return {
       isValid: false,
       error: 'El número de teléfono no es válido',
+    }
+  }
+
+  if (!ValidacionCedulaRucService.esCedulaValida(data.cedula)) {
+    return {
+      isValid: false,
+      error: 'El número de cédula no es válido',
     }
   }
 

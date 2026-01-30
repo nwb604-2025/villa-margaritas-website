@@ -2,16 +2,17 @@ import type { APIRoute } from 'astro'
 import type { ClientData } from '../../../types'
 import { sql } from '../../db'
 import { isValidEmail, isValidPhone } from '../../lib/utils'
+import { ValidacionCedulaRucService } from '../../lib/ci-validator'
 
 export const POST: APIRoute = async ({ request }) => {
   try {
     const body: ClientData = await request.json()
-    const { nombre, correo, telefono } = body
+    const { nombre, correo, telefono, cedula, mensaje } = body
 
-    if (!nombre || !correo || !telefono) {
+    if (!nombre || !correo || !telefono || !cedula || !mensaje) {
       return new Response(
         JSON.stringify({
-          error: 'Fields nombre, correo and telefono are required',
+          error: 'Todos los campos son obligatorios',
         }),
         {
           status: 400,
@@ -24,6 +25,18 @@ export const POST: APIRoute = async ({ request }) => {
       return new Response(
         JSON.stringify({
           error: 'Name must be a valid text and cannot be empty',
+        }),
+        {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' },
+        },
+      )
+    }
+
+    if (typeof cedula !== 'string' || !ValidacionCedulaRucService.esCedulaValida(cedula)) {
+      return new Response(
+        JSON.stringify({
+          error: 'Cedula must be valid',
         }),
         {
           status: 400,
@@ -59,11 +72,13 @@ export const POST: APIRoute = async ({ request }) => {
     const cleanName = nombre.trim()
     const cleanEmail = correo.trim().toLowerCase()
     const cleanPhone = telefono.trim()
+    const cleanCedula = cedula.trim()
+    const cleanMensaje = mensaje.trim()
 
     await sql`
-      INSERT INTO margaritas_clientes (nombre, correo, telefono)
-      VALUES (${cleanName}, ${cleanEmail}, ${cleanPhone})
-    `;
+      INSERT INTO margaritas_clientes (nombre, correo, telefono, cedula, mensaje)
+      VALUES (${cleanName}, ${cleanEmail}, ${cleanPhone}, ${cleanCedula}, ${cleanMensaje})
+    `
 
     return new Response(
       JSON.stringify({

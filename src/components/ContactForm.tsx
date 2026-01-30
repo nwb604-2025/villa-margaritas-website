@@ -23,8 +23,6 @@ export default function ContactForm() {
       return setLoading(false)
     }
 
-    const json = JSON.stringify(object)
-
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
@@ -32,17 +30,12 @@ export default function ContactForm() {
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
-        body: json,
+        body: JSON.stringify(object),
       })
 
       const result = await response.json()
 
       if (response.status === 200) {
-        toast.success('¡Mensaje enviado con éxito!', {
-          description: 'Nos pondremos en contacto contigo pronto.',
-        })
-        formRef.current.reset()
-
         await fetch('/api/clients', {
           method: 'POST',
           headers: {
@@ -52,11 +45,19 @@ export default function ContactForm() {
             nombre: object.nombre,
             correo: object.correo,
             telefono: object.telefono,
+            cedula: object.cedula,
+            mensaje: object.mensaje,
           }),
         })
+
+        toast.success('¡Mensaje enviado con éxito!', {
+          description: 'Nos pondremos en contacto contigo pronto.',
+        })
+
+        formRef.current.reset()
       } else {
         toast.error('Ocurrió un error', {
-          description: result.message || 'Por favor intenta nuevamente.',
+          description: 'Por favor intenta nuevamente.',
         })
       }
     } catch (error) {
@@ -99,6 +100,25 @@ export default function ContactForm() {
             required
           />
         </div>
+
+        <div>
+          <label
+            htmlFor="cedula"
+            className="text-dark mb-2 block font-sans text-sm font-bold tracking-wider uppercase"
+          >
+            Cédula
+          </label>
+          <input
+            type="text"
+            id="cedula"
+            name="cedula"
+            placeholder="Tu número de cédula"
+            className="text-dark focus:border-primary focus:ring-primary w-full border border-gray-200 bg-white px-4 py-3 font-sans text-base transition-colors focus:ring-1 focus:outline-none"
+            required
+            maxLength={10}
+          />
+        </div>
+
         <div>
           <label
             htmlFor="phone"
@@ -115,23 +135,23 @@ export default function ContactForm() {
             required
           />
         </div>
-      </div>
 
-      <div className="mb-6">
-        <label
-          htmlFor="email"
-          className="text-dark mb-2 block font-sans text-sm font-bold tracking-wider uppercase"
-        >
-          Email
-        </label>
-        <input
-          type="email"
-          id="email"
-          name="correo"
-          placeholder="tu@email.com"
-          className="text-dark focus:border- primary focus:ring-primary transition-col ors w-full border border-gray-200 bg-white px-4 py-3 font-sans text-base focus:ring-1 focus:outline-none"
-          required
-        />
+        <div>
+          <label
+            htmlFor="email"
+            className="text-dark mb-2 block font-sans text-sm font-bold tracking-wider uppercase"
+          >
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="correo"
+            placeholder="tu@email.com"
+            className="text-dark focus:border-primary focus:ring-primary w-full border border-gray-200 bg-white px-4 py-3 font-sans text-base transition-colors focus:ring-1 focus:outline-none"
+            required
+          />
+        </div>
       </div>
 
       <div className="mb-8">
