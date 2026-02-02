@@ -1,0 +1,50 @@
+---
+interface Props {
+  title: string
+  description?: string
+  image?: string
+  canonicalURL?: URL | string
+}
+
+const {
+  title,
+  description = 'Disfruta de una estadía cómoda e inolvidable en Villa Margaritas. Departamentos confortables, transporte y todas las comodidades que necesitas en tu visita.',
+  image = '/og-image.png',
+} = Astro.props
+
+const siteName = 'Villa Margaritas'
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || Astro.url.origin)
+const resolvedImage = new URL(image, Astro.url.origin)
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="Villa Margaritas" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<link rel="canonical" href={canonicalURL} />
+
+<title>{title} | {siteName}</title>
+<meta name="title" content={`${title} | ${siteName}`} />
+<meta name="description" content={description} />
+
+<meta property="og:type" content="website" />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:title" content={`${title} | ${siteName}`} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={resolvedImage} />
+
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:title" content={`${title} | ${siteName}`} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={resolvedImage} />
+
+<meta name="robots" content="index, follow" />
+<meta name="googlebot" content="index, follow" />
+
+<link rel="sitemap" href="/sitemap-index.xml" />
